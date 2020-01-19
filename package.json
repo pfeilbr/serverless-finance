@@ -1,0 +1,23 @@
+{
+  "name": "serverless-finances",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dailyfinances.js",
+  "dependencies": {
+    "aws-sdk": "^2.606.0",
+    "dotenv": "^8.2.0",
+    "googleapis": "^39.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^24.9.0",
+    "serverless": "^1.61.2"
+  },
+  "devDependencies": {
+    "serverless-pseudo-parameters": "^2.5.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,39 @@
+service: serverless-finances
+
+provider:
+  stage: ${opt:stage, self:custom.defaultStage}
+  name: aws
+  runtime: nodejs12.x
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "ssm:GetParameter"
+      Resource: "arn:aws:ssm:#{AWS::Region}:#{AWS::AccountId}:parameter/${self:custom.smsNotificationsPhoneNumbersKey}"
+
+custom:
+  defaultStage: dev
+  pre: ${self:service}-${self:provider.stage}
+  smsNotificationsPhoneNumbersKey: ${self:custom.pre}-sms-notification-phone-numbers
+
+plugins:
+  - serverless-pseudo-parameters
+
+functions:
+  notifySubscribers:
+    handler: handler.notifySubscribers
+    timeout: 30
+    environment:
+      SMS_NOTIFICATIONS_PHONE_NUMBERS_KEY: ${self:custom.smsNotificationsPhoneNumbersKey}
+    events:
+      - schedule: cron(0 16 ? * * *)
+  # dailyFinances:
+  #   handler: handler.dailyFinances
+  #   timeout: 30
+  #   events:
+  #     - http:
+  #         path: /
+  #         method: get
