@@ -15,7 +15,8 @@
     "serverless-pseudo-parameters": "^2.5.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "deploy": "serverless deploy"
   },
   "keywords": [],
   "author": "",

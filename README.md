@@ -22,7 +22,7 @@ npm run test -- --watch
 npm run test
 
 # deploy
-./node_modules/.bin/serverless deploy
+npm run deploy
 
 # manual run of `notifySubscribers` function
 SLS_DEBUG=* ./node_modules/.bin/serverless invoke --function notifySubscribers
