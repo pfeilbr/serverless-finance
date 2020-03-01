@@ -82,7 +82,7 @@ const balance = async () => {
   const row = rows.filter(row => row[0] && row[0].toLowerCase() === "balance");
   if (row.length) {
     const balanceString = row[0][6];
-    return parseFloat(balanceString);
+    return parseFloat(balanceString.replace(/,/g, ""));
   } else {
     return null;
   }
