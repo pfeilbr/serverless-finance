@@ -50,6 +50,7 @@ const getBalanceDetails = async () => {
 const notifySubscribers = async () => {
   const balanceDetails = await getBalanceDetails();
   const resp = await sendMessageToSubscribers(balanceDetails.message);
+  console.log(resp);
   return resp;
 };
 
